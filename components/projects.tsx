@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Github } from "lucide-react";
 import Image from "next/image";
+import { getImagePath } from "@/utils/image";
 
 export default function Projects() {
   const ref = useRef(null);
@@ -38,7 +39,7 @@ export default function Projects() {
       title: "DAILEKTO: A Language Learning Application",
       description:
         "A school project building a language learning app for the Sambal dialect. Used React Native, Gemma for the LLM, and Firebase for backend/authentication.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "projects/dailekto.jpg", // Updated to use actual project image
       tags: ["React Native", "Gemma", "Firebase", "Expo"],
       githubUrl: "https://github.com/lush09/DIALEKTOapp",
       category: "Mobile App",
@@ -48,7 +49,7 @@ export default function Projects() {
       title: "Callio: Gamify Your Fitness Journey",
       description:
         "A school project to gamify fitness. Used React Native for the mobile app and SQLite for the local database. Focused on the combat system, quizzes, and database design.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "projects/callio.jpg", // Updated to use actual project image
       tags: ["React Native", "Expo", "SQLite"],
       githubUrl: "https://github.com/lush09/callio-fitapp",
       category: "Mobile App",
@@ -58,7 +59,7 @@ export default function Projects() {
       title: "Web-based Editorial Platform",
       description:
         "A school project involving a web-based editorial platform. Handled backend development with PHP and MySQL, and integrated MSAL for SSO. Contributed to the frontend with HTML/CSS and Bootstrap.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "projects/editorial.jpg", // Updated to use actual project image
       tags: ["HTML", "CSS", "PHP", "MySQL", "JavaScript", "MSAL", "Bootstrap"],
       githubUrl: null,
       category: "Web App",
@@ -140,11 +141,16 @@ export default function Projects() {
               <Card className="overflow-hidden bg-gray-900 border-gray-800 h-full flex flex-col">
                 <div className="relative overflow-hidden group">
                   <Image
-                    src={project.image || "/placeholder.svg"}
+                    src={getImagePath(project.image)}
                     alt={project.title}
                     width={800}
                     height={600}
                     className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback to a placeholder if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.src = getImagePath("placeholder-project.jpg");
+                    }}
                   />
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex gap-4">
