@@ -60,7 +60,7 @@ export default function Hero() {
         <div className="max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
             <Image
-              src="/me.jpg"
+              src="/houshi-porfolio/me.jpg"
               alt="Shigeru Houshi"
               width={150}
               height={150}
