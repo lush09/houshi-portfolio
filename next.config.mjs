@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/houshi-porfolio',
+  assetPrefix: '/houshi-porfolio/',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -12,18 +13,5 @@ const nextConfig = {
     unoptimized: true,
   },
 }
-
-export const getImagePath = (path: string): string => {
-  // Remove leading slash if present
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
-  // In production (GitHub Pages), add the base path
-  if (process.env.NODE_ENV === 'production') {
-    return `/houshi-porfolio/${cleanPath}`;
-  }
-  
-  // In development, use the path as-is
-  return `/${cleanPath}`;
-};
 
 export default nextConfig
