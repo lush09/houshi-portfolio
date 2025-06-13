@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Portfolio | Shigeru Houshi",
   description: "Personal portfolio showcasing my projects and skills",
   generator: "v0.dev",
+  icons: {
+    icon: "/my-logo.png",
+  },
 };
 
 export default function RootLayout({
