@@ -36,30 +36,30 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
-      title: "DAILEKTO: A Language Learning Application",
+      title: "DAILEKTO: A Language Learning Application - 2025",
       description:
         "A school project building a language learning app for the Sambal dialect. Used React Native, Gemma for the LLM, and Firebase for backend/authentication.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/dailekto.png",
       tags: ["React Native", "Gemma", "Firebase", "Expo"],
       githubUrl: "https://github.com/lush09/DIALEKTOapp",
       category: "Mobile App",
     },
     {
       id: 2,
-      title: "Callio: Gamify Your Fitness Journey",
+      title: "Callio: Gamify Your Fitness Journey - 2024",
       description:
         "A school project to gamify fitness. Used React Native for the mobile app and SQLite for the local database. Focused on the combat system, quizzes, and database design.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/callio.png",
       tags: ["React Native", "Expo", "SQLite"],
       githubUrl: "https://github.com/lush09/callio-fitapp",
       category: "Mobile App",
     },
     {
       id: 3,
-      title: "Web-based Editorial Platform",
+      title: "Web-based Editorial Platform - 2023",
       description:
         "A school project involving a web-based editorial platform. Handled backend development with PHP and MySQL, and integrated MSAL for SSO. Contributed to the frontend with HTML/CSS and Bootstrap.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/tpp.png",
       tags: ["HTML", "CSS", "PHP", "MySQL", "JavaScript", "MSAL", "Bootstrap"],
       githubUrl: null,
       category: "Web App",
