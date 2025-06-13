@@ -140,13 +140,14 @@ export default function Projects() {
             <motion.div key={project.id} variants={itemVariants}>
               <Card className="overflow-hidden bg-gray-900 border-gray-800 h-full flex flex-col">
                 <div className="relative overflow-hidden group">
-                  <Image
-                    src={getImagePath("placeholder.svg")}
-                    alt={project.title}
-                    width={800}
-                    height={600}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  <div className="relative w-full h-64">
+                    <Image
+                      src={getImagePath(project.image)}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex gap-4">
                       {project.githubUrl ? (
