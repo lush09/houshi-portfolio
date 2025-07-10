@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/houshi-porfolio',
-  assetPrefix: '/houshi-porfolio/',
+  basePath: '/houshi-portfolio',
+  assetPrefix: '/houshi-portfolio/',
   eslint: {
     ignoreDuringBuilds: true,
   },
