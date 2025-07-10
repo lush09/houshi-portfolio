@@ -13,6 +13,7 @@ export default function Projects() {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,6 +119,9 @@ export default function Projects() {
       ? projects
       : projects.filter((project) => project.category === activeFilter);
 
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
+  const hasMoreProjects = visibleCount < filteredProjects.length;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -165,7 +169,10 @@ export default function Projects() {
                 key={filter}
                 variant={activeFilter === filter ? "default" : "outline"}
                 size="sm"
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => {
+                  setActiveFilter(filter);
+                  setVisibleCount(4); // Reset to show first 4 projects when filter changes
+                }}
                 className="rounded-full"
               >
                 {filter}
@@ -181,7 +188,7 @@ export default function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
         >
-          {filteredProjects.map((project) => (
+          {visibleProjects.map((project) => (
             <motion.div key={project.id} variants={itemVariants}>
               <Card className="overflow-hidden bg-gray-900 border-gray-800 h-full flex flex-col">
                 <div className="relative overflow-hidden group">
@@ -272,6 +279,25 @@ export default function Projects() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Load More Button */}
+        {hasMoreProjects && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex justify-center mt-12"
+          >
+            <Button
+              onClick={() => setVisibleCount((prev) => prev + 4)}
+              variant="outline"
+              size="lg"
+              className="rounded-full"
+            >
+              Load More Projects
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
