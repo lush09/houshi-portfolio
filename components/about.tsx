@@ -1,32 +1,38 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useRef, useState, useEffect } from "react"
-import { Code, Figma, Globe } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { Code, Figma, Globe } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function About() {
-  const ref = useRef(null)
-  const [isInView, setIsInView] = useState(false)
+  const ref = useRef(null);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting)
+        setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.3 },
-    )
+      { threshold: 0.3 }
+    );
 
     if (ref.current) {
-      observer.observe(ref.current)
+      observer.observe(ref.current);
     }
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current)
+        observer.unobserve(ref.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const skills = [
     "JavaScript",
@@ -37,25 +43,28 @@ export default function About() {
     "Figma",
     "Laravel",
     "UI/UX Design",
-  ]
+  ];
 
   const services = [
     {
       icon: <Code className="h-10 w-10 text-primary" />,
       title: "Web Development",
-      description: "Building responsive and performant web applications with modern technologies.",
+      description:
+        "Building responsive and performant web applications with modern technologies.",
     },
     {
       icon: <Figma className="h-10 w-10 text-primary" />,
       title: "UI/UX Design",
-      description: "Creating intuitive and beautiful user interfaces with a focus on user experience.",
+      description:
+        "Creating intuitive and beautiful user interfaces with a focus on user experience.",
     },
     {
       icon: <Globe className="h-10 w-10 text-primary" />,
       title: "Full Stack Solutions",
-      description: "End-to-end development from database design to frontend implementation.",
+      description:
+        "End-to-end development from database design to frontend implementation.",
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -65,16 +74,16 @@ export default function About() {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
+  };
 
   return (
     <section id="about" className="py-20 bg-gray-900">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -90,8 +99,9 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-xl text-gray-300">
-              I'm a passionate developer with a keen eye for user experience. My goal is to create engaging digital
-              experiences that are both functional and beautiful.
+              I'm a passionate developer with a keen eye for user experience. My
+              goal is to create engaging digital experiences that are both
+              functional and beautiful.
             </p>
           </motion.div>
         </div>
@@ -105,15 +115,19 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-6">My Journey</h3>
             <div className="space-y-4 text-gray-300">
               <p>
-                I'm a recent Computer Science graduate from Columban College, I've worked on a variety of academic projects from editorial
+                I'm a recent Computer Science graduate from Columban College,
+                I've worked on a variety of academic projects from editorial
                 websites to learning and fitness mobile applications.
               </p>
               <p>
-                I specialize in creating responsive, accessible, and performant web and mobile experiences with a focus on smooth
-                and intuitive user interfaces.
+                I specialize in creating responsive, accessible, and performant
+                web and mobile experiences with a focus on smooth and intuitive
+                user interfaces.
               </p>
               <p>
-                When I'm not coding, I enjoy playing video games, watching sports (Football, Basketball, Combat, etc.) or experimenting with new technologies.
+                When I'm not coding, I enjoy playing video games, watching
+                sports (Football, Basketball, Combat, etc.) or experimenting
+                with new technologies.
               </p>
             </div>
 
@@ -147,7 +161,9 @@ export default function About() {
                     <CardTitle>{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-gray-300 text-base">{service.description}</CardDescription>
+                    <CardDescription className="text-gray-300 text-base">
+                      {service.description}
+                    </CardDescription>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -156,5 +172,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }
