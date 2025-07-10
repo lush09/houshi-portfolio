@@ -212,13 +212,24 @@ export default function Projects() {
                           Code
                         </Button>
                       )}
+                      {project.liveUrl && (
+                        <Button size="sm" variant="secondary" asChild>
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Live Demo
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
                 <CardContent className="py-4 flex-grow">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <Badge
                         key={tag}
@@ -229,16 +240,6 @@ export default function Projects() {
                       </Badge>
                     ))}
                   </div>
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block text-primary underline text-sm mb-2"
-                    >
-                      Live Demo
-                    </a>
-                  )}
                 </CardContent>
                 <CardFooter className="pt-0 pb-4">
                   {project.githubUrl ? (
