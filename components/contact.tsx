@@ -9,6 +9,23 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { getFileUrl } from "@/utils/file";
+
+const handleCVDownload = () => {
+  try {
+    const cvUrl = getFileUrl("cv.pdf");
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "Shigeru_Houshi_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Failed to download CV:", error);
+    // Fallback: open in new tab
+    window.open(getFileUrl("cv.pdf"), "_blank");
+  }
+};
 
 export default function Contact() {
   const ref = useRef(null);
@@ -180,14 +197,12 @@ export default function Contact() {
                   </p>
                   <div className="flex gap-4">
                     <Button
-                      asChild
                       variant="outline"
                       size="sm"
                       className="rounded-full"
+                      onClick={handleCVDownload}
                     >
-                      <a href="/cv.pdf" download>
-                        Download CV
-                      </a>
+                      Download CV
                     </Button>
                   </div>
                 </CardContent>

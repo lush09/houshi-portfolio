@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Github } from "lucide-react";
 import Image from "next/image";
-import { getImagePath } from "@/utils/image";
 
 export default function Projects() {
   const ref = useRef(null);
@@ -142,7 +141,7 @@ export default function Projects() {
                 <div className="relative overflow-hidden group">
                   <div className="relative w-full h-64">
                     <Image
-                      src={getImagePath(project.image)}
+                      src={project.image}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
