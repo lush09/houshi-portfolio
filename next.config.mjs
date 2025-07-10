@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Only use static export in production
-  ...(process.env.NODE_ENV === 'production' && {
-    output: 'export',
-    basePath: '/houshi-portfolio',
-    assetPrefix: '/houshi-portfolio/',
-  }),
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -15,6 +9,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+}
+
+// Only add static export config in production
+if (process.env.NODE_ENV === 'production') {
+  nextConfig.output = 'export';
+  nextConfig.basePath = '/houshi-portfolio';
+  nextConfig.assetPrefix = '/houshi-portfolio/';
 }
 
 export default nextConfig
