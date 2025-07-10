@@ -64,9 +64,54 @@ export default function Projects() {
       githubUrl: null,
       category: "Web App",
     },
+    // --- Practice/Experiments ---
+    {
+      id: 4,
+      title: "Social Media Wall Prac",
+      description:
+        "Used Next.js with Supabase (PostgreSQL) to create a social media wall. Experimented with real-time data and authentication.",
+      image: "/mywall.png",
+      tags: ["Next.js", "Supabase", "PostgreSQL"],
+      githubUrl: "https://github.com/lush09/mywall.git",
+      liveUrl: "https://mywall-seven.vercel.app/",
+      category: "Practice/Experiments",
+    },
+    {
+      id: 5,
+      title: "TicTacToe",
+      description:
+        "A TicTacToe game using shadcn/ui, Next.js, and Tailwind CSS. Practice for UI libraries and state management.",
+      image: "/tictactoe.png",
+      tags: ["Next.js", "shadcn/ui", "Tailwind CSS"],
+      githubUrl: "https://github.com/lush09/tictactoe",
+      liveUrl: "https://tictactoe-ten-blush.vercel.app/",
+      category: "Practice/Experiments",
+    },
+    {
+      id: 6,
+      title: "Marketplace Prac",
+      description:
+        "A marketplace practice app using Next.js and Supabase. Focused on authentication, CRUD, and real-time features.",
+      image: "/marketplace.png",
+      tags: ["Next.js", "Supabase"],
+      githubUrl: "https://github.com/lush09/marketplace-task",
+      liveUrl: "https://marketplace-task-kappa.vercel.app/",
+      category: "Practice/Experiments",
+    },
+    {
+      id: 7,
+      title: "E-Commerce Prac",
+      description:
+        "A fullstack e-commerce practice app using MySQL and React. Practiced backend and frontend integration.",
+      image: "/scandi-task.png",
+      tags: ["React", "MySQL", "Fullstack"],
+      githubUrl: "https://github.com/lush09/fullstack-task",
+      liveUrl: "https://scandiweb-fullstack-task-snf4.vercel.app/all",
+      category: "Practice/Experiments",
+    },
   ];
 
-  const filters = ["All", "Web App", "Mobile App"];
+  const filters = ["All", "Web App", "Mobile App", "Practice/Experiments"];
 
   const filteredProjects =
     activeFilter === "All"
@@ -173,7 +218,7 @@ export default function Projects() {
                 <CardContent className="py-4 flex-grow">
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-2">
                     {project.tags.map((tag) => (
                       <Badge
                         key={tag}
@@ -184,6 +229,16 @@ export default function Projects() {
                       </Badge>
                     ))}
                   </div>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block text-primary underline text-sm mb-2"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                 </CardContent>
                 <CardFooter className="pt-0 pb-4">
                   {project.githubUrl ? (
