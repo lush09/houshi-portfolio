@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Linkedin, Facebook } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { getImagePath } from "@/utils/image";
 
 export default function Hero() {
   const [animatedElements, setAnimatedElements] = useState<any[]>([]);
@@ -67,7 +68,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/me.jpg"
+              src={getImagePath("me.jpg")}
               alt="Shigeru Houshi"
               width={150}
               height={150}
