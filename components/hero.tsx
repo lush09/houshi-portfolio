@@ -35,7 +35,7 @@ export default function Hero() {
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
         {animatedElements.map((el) => (
-          <motion.div
+          <div
             key={el.id}
             className="absolute rounded-full bg-primary/10"
             style={{
@@ -44,28 +44,16 @@ export default function Hero() {
               top: el.top,
               left: el.left,
             }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1],
-              x: [0, el.x, 0],
-              y: [0, el.y, 0],
-            }}
-            transition={{
-              duration: el.duration,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
           />
         ))}
       </div>
 
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
+          <div
+          /* initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5 }} */
           >
             <Image
               src={getImagePath("me.jpg")}
@@ -74,33 +62,33 @@ export default function Hero() {
               height={150}
               className="rounded-full border-4 border-primary/50 shadow-lg mx-auto mb-8"
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <div
+          /* initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }} */
           >
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-primary leading-tight">
               Full-Stack Web and Mobile Developer
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <div
+          /* initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4 }} */
           >
             <p className="text-lg sm:text-xl text-gray-300 mb-8 px-4 sm:px-0">
               I build interactive, and responsive web and mobile applications
               with a focus on user experience.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <div
+            /* initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.6 }} */
             className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0"
           >
             <Button size="lg" className="group">
@@ -110,12 +98,12 @@ export default function Hero() {
             <Button size="lg" variant="outline">
               <a href="#contact">Contact Me</a>
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <div
+            /* initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            transition={{ duration: 0.5, delay: 0.8 }} */
             className="flex justify-center gap-6 mt-12"
           >
             <a
@@ -145,7 +133,7 @@ export default function Hero() {
               <Facebook className="h-6 w-6" />
               <span className="sr-only">Facebook</span>
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
