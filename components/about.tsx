@@ -13,12 +13,12 @@ import {
 
 export default function About() {
   const ref = useRef(null);
-  const [isInView] = useState(true);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // setIsInView(entry.isIntersecting); // This line is removed
+        setIsInView(entry.isIntersecting);
       },
       { threshold: 0.3 }
     );
@@ -85,32 +85,32 @@ export default function About() {
     <section id="about" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2
-            // initial={{ opacity: 0, y: 20 }}
-            // animate={isInView ? { opacity: 1, y: 0 } : {}}
-            // transition={{ duration: 0.5 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
             About Me
-          </h2>
-          <div
-          // initial={{ opacity: 0, y: 20 }}
-          // animate={isInView ? { opacity: 1, y: 0 } : {}}
-          // transition={{ duration: 0.5, delay: 0.2 }}
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-xl text-gray-300">
               I'm a passionate developer with a keen eye for user experience. My
               goal is to create engaging digital experiences that are both
               functional and beautiful.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         <div ref={ref} className="grid md:grid-cols-2 gap-12 items-center">
-          <div
-          // initial={{ opacity: 0, x: -50 }}
-          // animate={isInView ? { opacity: 1, x: 0 } : {}}
-          // transition={{ duration: 0.6 }}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-bold mb-6">My Journey</h3>
             <div className="space-y-4 text-gray-300">
@@ -134,27 +134,27 @@ export default function About() {
             <h3 className="text-2xl font-bold mt-8 mb-4">Skills</h3>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill, index) => (
-                <span
+                <motion.span
                   key={skill}
-                  // initial={{ opacity: 0, scale: 0.8 }}
-                  // animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  // transition={{ duration: 0.4, delay: 0.1 * index }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
                   className="px-3 py-1 bg-gray-800 text-gray-200 rounded-full text-sm"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div
-            // variants={containerVariants}
-            // initial="hidden"
-            // animate={isInView ? "visible" : "hidden"}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="space-y-6"
           >
             {services.map((service, index) => (
-              <div key={index} /* variants={itemVariants} */>
+              <motion.div key={index} variants={itemVariants}>
                 <Card className="bg-gray-800 border-gray-700">
                   <CardHeader className="flex flex-row items-center gap-4 pb-2">
                     {service.icon}
@@ -166,9 +166,9 @@ export default function About() {
                     </CardDescription>
                   </CardContent>
                 </Card>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

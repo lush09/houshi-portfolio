@@ -29,7 +29,7 @@ const handleCVDownload = () => {
 
 export default function Contact() {
   const ref = useRef(null);
-  const [isInView] = useState(true);
+  const [isInView, setIsInView] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -44,7 +44,7 @@ export default function Contact() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // setIsInView(entry.isIntersecting); // This line is removed
+        setIsInView(entry.isIntersecting);
       },
       { threshold: 0.3 }
     );
@@ -137,18 +137,40 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-300">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
+            Get In Touch
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-gray-300"
+          >
             Want to chat? Send me a message!
-          </p>
+          </motion.p>
         </div>
 
         <div ref={ref} className="grid md:grid-cols-2 gap-12">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
-                <div key={index} className="flex items-start gap-4">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className="flex items-start gap-4"
+                >
                   <div className="bg-gray-800 p-3 rounded-full">
                     {item.icon}
                   </div>
@@ -161,7 +183,7 @@ export default function Contact() {
                       {item.value}
                     </a>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -186,9 +208,13 @@ export default function Contact() {
                 </CardContent>
               </Card>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -258,7 +284,7 @@ export default function Contact() {
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

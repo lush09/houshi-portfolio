@@ -11,14 +11,14 @@ import { getImagePath } from "@/utils/image";
 
 export default function Projects() {
   const ref = useRef(null);
-  const [isInView] = useState(true);
+  const [isInView, setIsInView] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
   const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // setIsInView(entry.isIntersecting); // Removed as per edit hint
+        setIsInView(entry.isIntersecting);
       },
       { threshold: 0.1 }
     );
@@ -122,16 +122,48 @@ export default function Projects() {
   const visibleProjects = filteredProjects.slice(0, visibleCount);
   const hasMoreProjects = visibleCount < filteredProjects.length;
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <section id="projects" className="py-20 bg-gray-950">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-          <p className="text-xl text-gray-300">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
+            My Projects
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-gray-300"
+          >
             Check out some of my recent work
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-2 mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-2 mt-8"
+          >
             {filters.map((filter) => (
               <Button
                 key={filter}
@@ -146,12 +178,18 @@ export default function Projects() {
                 {filter}
               </Button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
+        >
           {visibleProjects.map((project) => (
-            <div key={project.id}>
+            <motion.div key={project.id} variants={itemVariants}>
               <Card className="overflow-hidden bg-gray-900 border-gray-800 h-full flex flex-col">
                 <div className="relative overflow-hidden group">
                   <div className="relative w-full h-64">
@@ -238,13 +276,18 @@ export default function Projects() {
                   )}
                 </CardFooter>
               </Card>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Load More Button */}
         {hasMoreProjects && (
-          <div className="flex justify-center mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex justify-center mt-12"
+          >
             <Button
               onClick={() => setVisibleCount((prev) => prev + 4)}
               variant="outline"
@@ -253,7 +296,7 @@ export default function Projects() {
             >
               Load More Projects
             </Button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
