@@ -77,8 +77,6 @@ export default function Contact() {
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      // IMPORTANT: Replace with your Formspree endpoint.
-      // Go to https://formspree.io/ to create a new form for shigshoushii24@gmail.com
       const response = await fetch("https://formspree.io/f/myzjwoar", {
         method: "POST",
         body: formData,

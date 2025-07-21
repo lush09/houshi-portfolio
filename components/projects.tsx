@@ -65,7 +65,6 @@ export default function Projects() {
       githubUrl: null,
       category: "Web App",
     },
-    // --- Practice/Experiments ---
     {
       id: 4,
       title: "Social Media Wall Prac",
@@ -171,7 +170,7 @@ export default function Projects() {
                 size="sm"
                 onClick={() => {
                   setActiveFilter(filter);
-                  setVisibleCount(4); // Reset to show first 4 projects when filter changes
+                  setVisibleCount(4);
                 }}
                 className="rounded-full"
               >
