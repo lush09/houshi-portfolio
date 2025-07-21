@@ -7,8 +7,136 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getImagePath } from "@/utils/image";
 
+const skillBubbles = [
+  {
+    name: "React",
+    svg: (
+      <svg
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="32" cy="32" r="6" fill="#61DAFB" />
+        <ellipse
+          rx="28"
+          ry="11"
+          cx="32"
+          cy="32"
+          stroke="#61DAFB"
+          strokeWidth="3"
+          fill="none"
+        />
+        <ellipse
+          rx="28"
+          ry="11"
+          cx="32"
+          cy="32"
+          stroke="#61DAFB"
+          strokeWidth="3"
+          fill="none"
+          transform="rotate(60 32 32)"
+        />
+        <ellipse
+          rx="28"
+          ry="11"
+          cx="32"
+          cy="32"
+          stroke="#61DAFB"
+          strokeWidth="3"
+          fill="none"
+          transform="rotate(120 32 32)"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "HTML5",
+    svg: (
+      <svg
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="64" height="64" rx="12" fill="#E44D26" />
+        <path d="M16 16h32l-4 36-12 4-12-4-4-36z" fill="#fff" />
+        <path d="M32 52V20h12l-3.2 28.8L32 52z" fill="#F16529" />
+      </svg>
+    ),
+  },
+  {
+    name: "JavaScript",
+    svg: (
+      <svg
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="64" height="64" rx="12" fill="#F7DF1E" />
+        <text
+          x="32"
+          y="44"
+          textAnchor="middle"
+          fontSize="28"
+          fontWeight="bold"
+          fill="#222"
+        >
+          JS
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "MySQL",
+    svg: (
+      <svg
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <ellipse cx="32" cy="40" rx="20" ry="8" fill="#00758F" />
+        <ellipse cx="32" cy="32" rx="20" ry="8" fill="#F29111" />
+        <ellipse cx="32" cy="24" rx="20" ry="8" fill="#00758F" />
+        <ellipse cx="32" cy="16" rx="20" ry="8" fill="#F29111" />
+      </svg>
+    ),
+  },
+  {
+    name: "PHP",
+    svg: (
+      <svg
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <ellipse cx="32" cy="32" rx="28" ry="16" fill="#777BB4" />
+        <text
+          x="32"
+          y="40"
+          textAnchor="middle"
+          fontSize="20"
+          fontWeight="bold"
+          fill="#fff"
+        >
+          PHP
+        </text>
+      </svg>
+    ),
+  },
+];
+
 export default function Hero() {
   const [animatedElements, setAnimatedElements] = useState<any[]>([]);
+  const [bubbleElements, setBubbleElements] = useState<any[]>([]);
 
   useEffect(() => {
     const elements = Array.from({ length: 5 }, (_, i) => ({
@@ -22,6 +150,22 @@ export default function Hero() {
       duration: Math.random() * 10 + 10,
     }));
     setAnimatedElements(elements);
+
+    const bubbles = skillBubbles.map((bubble, i) => {
+      const size = Math.random() * 32 + 48;
+      return {
+        ...bubble,
+        id: i,
+        size,
+        top: `${Math.random() * 70 + 10}%`,
+        left: `${Math.random() * 70 + 10}%`,
+        x: Math.random() * 40 - 20,
+        y: Math.random() * 40 - 20,
+        duration: Math.random() * 6 + 8,
+        delay: Math.random() * 2,
+      };
+    });
+    setBubbleElements(bubbles);
   }, []);
 
   return (
@@ -29,10 +173,8 @@ export default function Hero() {
       id="home"
       className="min-h-screen flex items-center pt-20 md:pt-16 pb-32 relative overflow-hidden"
     >
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 z-0" />
 
-      {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
         {animatedElements.map((el) => (
           <motion.div
@@ -57,6 +199,39 @@ export default function Hero() {
               ease: "easeInOut",
             }}
           />
+        ))}
+      </div>
+
+      {/* Skill Bubbles (only on md+ screens) */}
+      <div className="hidden md:block absolute inset-0 z-10 pointer-events-none">
+        {bubbleElements.map((bubble) => (
+          <motion.div
+            key={bubble.id}
+            className="absolute flex items-center justify-center"
+            style={{
+              width: bubble.size,
+              height: bubble.size,
+              top: bubble.top,
+              left: bubble.left,
+              filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.12))",
+              opacity: 0.85,
+            }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{
+              opacity: [0.7, 1, 0.7],
+              scale: [1, 1.15, 1],
+              x: [0, bubble.x, 0],
+              y: [0, bubble.y, 0],
+            }}
+            transition={{
+              duration: bubble.duration,
+              delay: bubble.delay,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+          >
+            {bubble.svg}
+          </motion.div>
         ))}
       </div>
 
