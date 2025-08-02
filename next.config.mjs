@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/houshi-portfolio',
-  assetPrefix: '/houshi-portfolio/',
+  assetPrefix: '/houshi-portfolio',
   eslint: {
     ignoreDuringBuilds: true,
   },
