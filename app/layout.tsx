@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Personal portfolio showcasing my projects and skills",
   generator: "v0.dev",
   icons: {
-    icon: "@/public/shigeru-logo.png",
+    icon: "/my-logo.png",
   },
   viewport: {
     width: "device-width",
