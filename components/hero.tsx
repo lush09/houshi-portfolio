@@ -134,9 +134,35 @@ const skillBubbles = [
   },
 ];
 
+interface AnimatedElement {
+  id: number;
+  width: number;
+  height: number;
+  top: string;
+  left: string;
+  x: number;
+  y: number;
+  duration: number;
+}
+
+interface BubbleElement {
+  id: number;
+  size: number;
+  top: string;
+  left: string;
+  x: number;
+  y: number;
+  duration: number;
+  delay: number;
+  name: string;
+  svg: React.ReactElement;
+}
+
 export default function Hero() {
-  const [animatedElements, setAnimatedElements] = useState<any[]>([]);
-  const [bubbleElements, setBubbleElements] = useState<any[]>([]);
+  const [animatedElements, setAnimatedElements] = useState<AnimatedElement[]>(
+    []
+  );
+  const [bubbleElements, setBubbleElements] = useState<BubbleElement[]>([]);
 
   useEffect(() => {
     const elements = Array.from({ length: 5 }, (_, i) => ({

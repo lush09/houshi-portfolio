@@ -42,6 +42,7 @@ export default function Contact() {
   } | null>(null);
 
   useEffect(() => {
+    const currentRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -49,13 +50,13 @@ export default function Contact() {
       { threshold: 0.3 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -97,7 +98,7 @@ export default function Contact() {
           text: "Something went wrong. Please try again.",
         });
       }
-    } catch (error) {
+    } catch {
       setSubmissionMessage({
         type: "error",
         text: "An error occurred. Please try again later.",
@@ -188,9 +189,9 @@ export default function Contact() {
             <div className="mt-12">
               <Card className="bg-gray-800 border-gray-700">
                 <CardContent className="p-6">
-                  <h4 className="text-xl font-bold mb-4">Let's Connect</h4>
+                  <h4 className="text-xl font-bold mb-4">Let&apos;s Connect</h4>
                   <p className="text-gray-300 mb-6">
-                    I'm currently open to new opportunities. If you want to
+                    I&apos;m currently open to new opportunities. If you want to
                     discuss potential collaborations, feel free to reach out.
                   </p>
                   <div className="flex gap-4">

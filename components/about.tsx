@@ -16,6 +16,7 @@ export default function About() {
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
+    const currentRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
@@ -23,13 +24,13 @@ export default function About() {
       { threshold: 0.3 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -99,9 +100,9 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-xl text-gray-300">
-              I'm a passionate developer with a keen eye for user experience. My
-              goal is to create engaging digital experiences that are both
-              functional and beautiful.
+              I&apos;m a passionate developer with a keen eye for user
+              experience. My goal is to create engaging digital experiences that
+              are both functional and beautiful.
             </p>
           </motion.div>
         </div>
@@ -115,9 +116,9 @@ export default function About() {
             <h3 className="text-2xl font-bold mb-6">My Journey</h3>
             <div className="space-y-4 text-gray-300">
               <p>
-                I'm a recent Computer Science graduate from Columban College,
-                I've worked on a variety of academic projects from editorial
-                websites to learning and fitness mobile applications.
+                I&apos;m a recent Computer Science graduate from Columban
+                College, I&apos;ve worked on a variety of academic projects from
+                editorial websites to learning and fitness mobile applications.
               </p>
               <p>
                 I specialize in creating responsive, accessible, and performant
@@ -125,7 +126,7 @@ export default function About() {
                 user interfaces.
               </p>
               <p>
-                When I'm not coding, I enjoy playing video games, watching
+                When I&apos;m not coding, I enjoy playing video games, watching
                 sports (Football, Basketball, Combat, etc.) or experimenting
                 with new technologies.
               </p>
