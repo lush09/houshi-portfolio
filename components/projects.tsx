@@ -68,6 +68,17 @@ export default function Projects() {
     },
     {
       id: 4,
+      title: "ANAMI-NIHON Website (Freelance) - 2025",
+      description:
+        "A free website for a local company. Built with React and TypeScript.",
+      image: "/anami-nihon.png",
+      tags: ["React", "TypeScript"],
+      githubUrl: null,
+      liveUrl: "https://anami-nihon.vercel.app",
+      category: "Web App",
+    },
+    {
+      id: 5,
       title: "SyntaxForge: Markdown Blog Editor - 2025",
       description:
         "A modern, feature-rich web-based markdown editor built with React and TypeScript. Features two-pane layout with live preview, auto-save, theme toggle, and export options for creating blog content.",
@@ -77,53 +88,9 @@ export default function Projects() {
       liveUrl: "https://syntaxforge-app.vercel.app/",
       category: "Web App",
     },
-    {
-      id: 5,
-      title: "Social Media Wall Prac",
-      description:
-        "Used Next.js with Supabase (PostgreSQL) to create a social media wall. Experimented with real-time data and authentication.",
-      image: "/mywall.png",
-      tags: ["Next.js", "Supabase", "PostgreSQL"],
-      githubUrl: "https://github.com/lush09/mywall.git",
-      liveUrl: "https://mywall-seven.vercel.app/",
-      category: "Practice/Experiments",
-    },
-    {
-      id: 6,
-      title: "TicTacToe",
-      description:
-        "A TicTacToe game using shadcn/ui, Next.js, and Tailwind CSS. Practice for UI libraries and state management.",
-      image: "/tictactoe.png",
-      tags: ["Next.js", "shadcn/ui", "Tailwind CSS"],
-      githubUrl: "https://github.com/lush09/tictactoe",
-      liveUrl: "https://tictactoe-ten-blush.vercel.app/",
-      category: "Practice/Experiments",
-    },
-    {
-      id: 7,
-      title: "Marketplace Prac",
-      description:
-        "A marketplace practice app using Next.js and Supabase. Focused on authentication, CRUD, and real-time features.",
-      image: "/marketplace.png",
-      tags: ["Next.js", "Supabase"],
-      githubUrl: "https://github.com/lush09/marketplace-task",
-      liveUrl: "https://marketplace-task-kappa.vercel.app/",
-      category: "Practice/Experiments",
-    },
-    {
-      id: 8,
-      title: "E-Commerce Prac",
-      description:
-        "A fullstack e-commerce practice app using MySQL and React. Practiced backend and frontend integration.",
-      image: "/scandi-task.png",
-      tags: ["React", "MySQL", "Fullstack"],
-      githubUrl: "https://github.com/lush09/fullstack-task",
-      liveUrl: "https://scandiweb-fullstack-task-snf4.vercel.app/all",
-      category: "Practice/Experiments",
-    },
   ];
 
-  const filters = ["All", "Web App", "Mobile App", "Practice/Experiments"];
+  const filters = ["All", "Web App", "Mobile App"];
 
   const filteredProjects =
     activeFilter === "All"
